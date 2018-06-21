@@ -43,7 +43,6 @@ public class DataSeedingListener implements ApplicationListener<ContextRefreshed
             Account admin = new Account();
             admin.setEmail("admin@gmail.com");
             admin.setPass(passwordEncoder.encode("123456"));
-            admin.setName("Jan");
             List<Role> roles = new ArrayList<>();
             roles.add(roleRepository.findByName("ROLE_ADMIN"));
             roles.add(roleRepository.findByName("ROLE_MEMBER"));
@@ -56,7 +55,6 @@ public class DataSeedingListener implements ApplicationListener<ContextRefreshed
         	Account user = new Account();
             user.setEmail("member@gmail.com");
             user.setPass(passwordEncoder.encode("123456"));
-            user.setName("User");
             List<Role> roles = new ArrayList<>();
             roles.add(roleRepository.findByName("ROLE_MEMBER"));
             user.setRoles(roles);

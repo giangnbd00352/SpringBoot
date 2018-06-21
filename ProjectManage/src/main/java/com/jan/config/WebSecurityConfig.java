@@ -10,6 +10,10 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+import com.jan.filter.JWTAuthenticationFilter;
+import com.jan.filter.JWTLoginFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -42,9 +46,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.and()
 			.exceptionHandling()
 				.accessDeniedPage("/403");
-
-	}
-	
-	
+    }
 
 }

@@ -12,14 +12,12 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQuery;
 
-
-
 /**
  * The persistent class for the account database table.
  * 
  */
 @Entity
-@NamedQuery(name="Account.findAll", query="SELECT a FROM Account a")
+@NamedQuery(name = "Account.findAll", query = "SELECT a FROM Account a")
 public class Account implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -32,49 +30,43 @@ public class Account implements Serializable {
 	private String name;
 
 	private String pass;
-	
+
 	private String role;
 
 	@ManyToMany
-	@JoinTable(
-		name="account_role"
-		, joinColumns={
-			@JoinColumn(name="account_id")
-			}
-		, inverseJoinColumns={
-			@JoinColumn(name="role_id")
-			}
-		)
+	@JoinTable(name = "account_role", joinColumns = { @JoinColumn(name = "account_id") }, inverseJoinColumns = {
+			@JoinColumn(name = "role_id") })
 	private List<Role> roles;
 
-	//bi-directional many-to-many association to Project
-//	@ManyToMany
-//	@JoinTable(
-//		name="relation"
-//		, joinColumns={
-//			@JoinColumn(name="accountId")
-//			}
-//		, inverseJoinColumns={
-//			@JoinColumn(name="codenumber")
-//			}
-//		)
-//	private List<Project> projects;
+	// bi-directional many-to-many association to Project
+	// @ManyToMany
+	// @JoinTable(
+	// name="relation"
+	// , joinColumns={
+	// @JoinColumn(name="accountId")
+	// }
+	// , inverseJoinColumns={
+	// @JoinColumn(name="codenumber")
+	// }
+	// )
+	// private List<Project> projects;
 
 	public Account() {
 	}
 
-	
+	public Account(String email, String pass) {
+		super();
+		this.email = email;
+		this.pass = pass;
+	}
 
 	public int getAccID() {
 		return accID;
 	}
 
-
 	public void setAccID(int accID) {
 		this.accID = accID;
 	}
-
-
 
 	public String getEmail() {
 		return this.email;
@@ -116,12 +108,12 @@ public class Account implements Serializable {
 		this.roles = roles;
 	}
 
-//	public List<Project> getProjects() {
-//		return this.projects;
-//	}
-//
-//	public void setProjects(List<Project> projects) {
-//		this.projects = projects;
-//	}
+	// public List<Project> getProjects() {
+	// return this.projects;
+	// }
+	//
+	// public void setProjects(List<Project> projects) {
+	// this.projects = projects;
+	// }
 
 }
