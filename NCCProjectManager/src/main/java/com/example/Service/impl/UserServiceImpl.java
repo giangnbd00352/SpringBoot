@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.Dao.impl.UserDaoImpl;
 import com.example.Entity.User;
+import com.example.Model.LoginDTO;
 import com.example.Model.UserDTO;
 import com.example.Service.UserService;
 
@@ -71,6 +72,14 @@ public class UserServiceImpl implements UserService{
 			}
 		}
 		return false;
+	}
+
+	@Override
+	public LoginDTO TokenvsProfile(String token, User profile) {
+		LoginDTO dto = new LoginDTO();
+		dto.setToken(token);
+		dto.setProfile(profile);
+		return dto;
 	}
 	
 }

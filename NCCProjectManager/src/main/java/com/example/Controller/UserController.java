@@ -1,12 +1,12 @@
 package com.example.Controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.Entity.User;
+import com.example.Model.LoginDTO;
 import com.example.Model.UserDTO;
 import com.example.Service.JwtService;
 import com.example.Service.impl.UserServiceImpl;
@@ -44,12 +45,14 @@ public class UserController {
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	@ResponseBody
-	public ResponseEntity<String> login(HttpServletRequest request, @RequestBody User user) {
+	public LoginDTO login(HttpServletRequest request, @RequestBody User user) {
 		String result = "";
+		User u = new User();
 		HttpStatus httpStatus = null;
 		try {
 			if (userService.checkLogin(user)) {
 				result = jwtService.generateTokenLogin(user.getUsername());
+				u = userService.loadUserByUsername(user.getUsername());
 				httpStatus = HttpStatus.OK;
 			} else {
 				result = "Wrong userId and password";
@@ -59,7 +62,8 @@ public class UserController {
 			result = "Server Error";
 			httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
 		}
-		return new ResponseEntity<String>(result, httpStatus);
+		return userService.TokenvsProfile(result, u);
 
 	}
+	
 }

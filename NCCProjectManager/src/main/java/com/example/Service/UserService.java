@@ -3,6 +3,7 @@ package com.example.Service;
 import java.util.List;
 
 import com.example.Entity.User;
+import com.example.Model.LoginDTO;
 import com.example.Model.UserDTO;
 
 public interface UserService {
@@ -20,6 +21,8 @@ public interface UserService {
 	public  User loadUserByUsername(String username);
 	
 	public  boolean checkLogin(User user);
+	
+	public LoginDTO TokenvsProfile(String token, User profile);
 
 	
 }
