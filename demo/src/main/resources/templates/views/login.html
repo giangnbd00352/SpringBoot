@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1" />
+<title>Insert title here</title>
+<script th:src="@{/js/bootstrap-3.1.1/dist/js/bootstrap.min.js}"/>
+</head>
+<body>
+	<h1>Login</h1>
+	<form th:action="@{/dashboard}" method="POST">
+			<table>
+				<tr>
+					<td><label>User name</label></td>
+					<td><input type="text" name="username" id="username" /></td>
+				</tr>
+				<tr>
+					<td><label>Password</label></td>
+					<td><input  type="password" name="password" id="password" /></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><input type="submit" value="Login"/></td>
+				</tr>
+			</table>
+		</form>
+</body>
+</html>
